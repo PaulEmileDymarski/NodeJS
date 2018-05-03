@@ -12,7 +12,7 @@ Voir toutes les caracteristiques d'un champion :
 
 node app.js
 
-Puis entrez le nom d'un champion (ex : 1001)
+Puis entrez le nom d'un champion
 
 ****************************************************
 
