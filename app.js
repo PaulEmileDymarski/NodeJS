@@ -38,20 +38,20 @@ async function mainChamps() {
     ]).then((answer)=>{
       console.log(answer.champName)
       championName = answer.champName
-      fs.writeFile('MYFILETEST.txt', championName, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-      })
     })
   let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/champions?locale=en_US&champListData=stats&dataById=false&' + APIkey)
-  console.log(donnee.data);
+  console.log(donnee.data.data[championName]);
+  fs.writeFile('MYFILETEST.txt', donnee.data.data[championName], function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  })
 }
 catch(e) {
     console.error(e)
   }
 }
 /////////////////////////////////Fonction main des items///////////////////////////////
-async function mainItem() {
+async function mainItems() {
   try {
     await inquirer.prompt([
     {
@@ -67,8 +67,8 @@ async function mainItem() {
         console.log('Saved!');
       })
     })
-  let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/items?locale=en_US&' + key)
-  console.log(donnee.data.itemnName);
+  let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/items?locale=en_US&' + APIkey)
+  console.log(donnee.data.data[itemName]);
 }
 catch(e) {
     console.error(e)
@@ -77,7 +77,7 @@ catch(e) {
 ////////////////////////////////////Fonction main des Versions//////////////////////////////////
 async function mainVersion() {
   try {
-let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/versions?api_key=RGAPI-74cce822-c34c-440e-986a-c1e482516ecc')
+let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/versions?api_key='+ APIkey)
 console.log('Historique des versions du jeu : '+donnee.data);
 }
 catch(e) {
