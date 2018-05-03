@@ -1,0 +1,17 @@
+{
+  "name": "exoPromesse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node.index.js"
+  },
+  "bin": {
+    "mycommand": "./index.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "commander": "^2.15.1",
+    "inquirer": "^5.2.0"
+  }
+}
