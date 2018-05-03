@@ -6,17 +6,17 @@ var Fichier
 
 let donnee = {}
 const promises = []
-const APIkey = 'api_key=RGAPI-6e757d58-2ca6-425b-a7e4-0cc28855529f'
+const APIkey = 'api_key=RGAPI-74cce822-c34c-440e-986a-c1e482516ecc'
 
 program
   .version('1.0.0')
   .option('-i, --item', 'stat item')
-  .option('-ver, --versions', 'historique version')
+  .option('-b, --test', 'historique version')
 
 program.parse(process.argv);
 ///////////////////////////////appel pour les version du jeu////////////////////////////////
-console.log(program.version)
-if (program.versions) {
+console.log(program.test)
+if (program.test) {
   mainVersion();
 }
 ///////////////////////////appel Main des items///////////////////////////////
@@ -49,7 +49,7 @@ async function mainChamps() {
   console.log(donnee.data.data[championName]);
   ///////////////////////////Boucle pour ecrire dans le fichier
   for (var id in donnee.data.data[championName].stats){
-    Fichier = '\r\n'+id+' : '+donnee.data.data[championName].stats[id]+
+    Fichier = '\r\n'+id+' : '+donnee.data.data[championName].stats[id]
     fs.appendFile('MYFILETEST.txt', Fichier , function (err) {
       if (err) throw err;
     })
@@ -69,7 +69,7 @@ async function mainItems() {
       message:'Entrez un nom d item',
       name:'itemName'
     }
-    ]).then((answer)=>{
+    ]).then((answer) => {
       console.log(answer.itemName)
       itemName = answer.itemName
       fs.writeFile('MYFILETEST.txt', itemName, function (err) {
@@ -87,7 +87,7 @@ catch(e) {
 ////////////////////////////////////Fonction main des Versions//////////////////////////////////
 async function mainVersion() {
   try {
-let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/versions?api_key='+ APIkey)
+let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/versions?api_key=api_key=RGAPI-74cce822-c34c-440e-986a-c1e482516ecc')
 console.log('Historique des versions du jeu : '+donnee.data);
 }
 catch(e) {
