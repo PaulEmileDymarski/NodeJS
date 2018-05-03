@@ -2,10 +2,11 @@ const API = require('axios')
 const inquirer = require('inquirer')
 const fs = require('fs');
 const program  = require('commander');
+var Fichier
 
 let donnee = {}
 const promises = []
-const APIkey = 'api_key=RGAPI-74cce822-c34c-440e-986a-c1e482516ecc'
+const APIkey = 'api_key=RGAPI-6e757d58-2ca6-425b-a7e4-0cc28855529f'
 
 program
   .version('1.0.0')
@@ -40,11 +41,20 @@ async function mainChamps() {
       championName = answer.champName
     })
   let donnee = await API.get('https://euw1.api.riotgames.com/lol/static-data/v3/champions?locale=en_US&champListData=stats&dataById=false&' + APIkey)
-  console.log(donnee.data.data[championName]);
-  fs.writeFile('MYFILETEST.txt', donnee.data.data[championName], function (err) {
+////////////on efface le fichier
+  fs.writeFile('MYFILETEST.txt', '', function (err) {
     if (err) throw err;
-    console.log('Saved!');
   })
+    console.log('Saved!');
+  console.log(donnee.data.data[championName]);
+  ///////////////////////////Boucle pour ecrire dans le fichier
+  for (var id in donnee.data.data[championName].stats){
+    Fichier = '\r\n'+id+' : '+donnee.data.data[championName].stats[id]+
+    fs.appendFile('MYFILETEST.txt', Fichier , function (err) {
+      if (err) throw err;
+    })
+  }
+  console.log('Saved!');
 }
 catch(e) {
     console.error(e)
