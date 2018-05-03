@@ -14,13 +14,13 @@ node app.js
 
 Puis entrez le nom d'un champion (ex : 1001)
 
-
+****************************************************
 
 Afficher toutes les versions du jeu :
 
 node app.js -ver 
 
-
+****************************************************
 
 Voir toutes les caracteristiques d'un item :
 
